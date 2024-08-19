@@ -1,0 +1,17 @@
+img {
+  width: 100%;
+  height: auto;
+}
+
+.photo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  /* background-color: yellow; */
+}
+
+.slick-prev:before,
+.slick-next:before {
+  color: black !important;
+}
