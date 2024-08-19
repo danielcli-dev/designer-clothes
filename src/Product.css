@@ -44,7 +44,7 @@
 }
 
 .product__button.green {
-  background-color: green;
+  background-color: rgb(27, 209, 27);
 }
 
 @media (width) {
