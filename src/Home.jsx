@@ -26,8 +26,8 @@ const Home = () => {
           size: "M",
           color: "Black",
           pictures: [
-            "5CFC68C7-7AB6-4EE9-B1C8-6C8B3F110A5D.jpg",
-            "9E85509F-700A-4836-8CF6-A83513F53793.jpg",
+            "5CFC68C7-7AB6-4EE9-B1C8-6C8B3F110A5D.JPG",
+            "9E85509F-700A-4836-8CF6-A83513F53793.JPG",
           ],
         }}
         confirmedList={confirmedList}
@@ -41,8 +41,8 @@ const Home = () => {
           size: "M",
           color: "Black",
           pictures: [
-            "C9551E8A-3D0F-4CAB-B6AC-EB931209228E.jpg",
-            "74BE7C66-4845-463D-A924-29D13DF4B483.jpg",
+            "C9551E8A-3D0F-4CAB-B6AC-EB931209228E.JPG",
+            "74BE7C66-4845-463D-A924-29D13DF4B483.JPG",
           ],
         }}
         confirmedList={confirmedList}
