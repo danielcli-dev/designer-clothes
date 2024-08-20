@@ -22,12 +22,13 @@ const Home = () => {
         info={{
           id: "1",
           name: "Jacket",
-          brand: "Axis Modern Coast",
+          brand: "Axis",
           size: "M",
-          color: "Black",
+          color: "Beige",
+          material: "75% Cotton, 23% Rayon, 2% Lycra",
           pictures: [
-            "5CFC68C7-7AB6-4EE9-B1C8-6C8B3F110A5D.JPG",
-            "9E85509F-700A-4836-8CF6-A83513F53793.JPG",
+            "Axis_BeigeJacket-Front.JPG",
+            "Axis_BeigeJacket-Back.JPG",
           ],
         }}
         confirmedList={confirmedList}
@@ -37,17 +38,129 @@ const Home = () => {
         info={{
           id: "2",
           name: "Jacket",
-          brand: "Bluemist",
-          size: "M",
-          color: "Black",
+          brand: "Axis",
+          size: "L",
+          color: "Beige",
+          material: "N/A",
           pictures: [
-            "C9551E8A-3D0F-4CAB-B6AC-EB931209228E.JPG",
-            "74BE7C66-4845-463D-A924-29D13DF4B483.JPG",
+            "Axis_SuadeJacket-Front.JPG",
+            "Axis_SuadeJacket-Back.JPG",
           ],
         }}
         confirmedList={confirmedList}
         toggleSelection={toggleSelection}
       />
+      <Product
+        info={{
+          id: "3",
+          name: "Jacket",
+          brand: "Axis Denim",
+          size: "XL",
+          color: "Beige",
+          material: "55% Tencel Lyocell, 45% Cotton",
+          pictures: [
+            "AxisDenim_Jacket-Front.JPG",
+            "AxisDenim_Jacket-Back.JPG",
+          ],
+        }}
+        confirmedList={confirmedList}
+        toggleSelection={toggleSelection}
+      />
+      <Product
+        info={{
+          id: "4",
+          name: "Jacket",
+          brand: "Axis Modern Coast",
+          size: "M",
+          color: "Beige",
+          material: "100% Cotton",
+          pictures: [
+            "AxisModernCoast_CottonJacket-Front.JPG",
+            "AxisModernCoast_CottonJacket-Back.JPG",
+          ],
+        }}
+        confirmedList={confirmedList}
+        toggleSelection={toggleSelection}
+      />
+      <Product
+        info={{
+          id: "5",
+          name: "Jacket",
+          brand: "Axis Modern Coast",
+          size: "M",
+          color: "Black",
+          material: "70% Wool, 30% Acrylic",
+          pictures: [
+            "AxisModernCoast_Jacket-Front.JPG",
+            "AxisModernCoast_Jacket-Back.JPG",
+          ],
+        }}
+        confirmedList={confirmedList}
+        toggleSelection={toggleSelection}
+      />
+      <Product
+        info={{
+          id: "6",
+          name: "Jacket",
+          brand: "Bluemist",
+          size: "M",
+          color: "Black",
+          material: "89% Polyester, 11% Nylon",
+          pictures: [
+            "Bluemist_Jacket-Front.JPG",
+            "Bluemist_Jacket-Back.JPG",
+          ],
+        }}
+        confirmedList={confirmedList}
+        toggleSelection={toggleSelection}
+      />
+      <Product
+        info={{
+          id: "7",
+          name: "Jacket",
+          brand: "Bluemist",
+          size: "M",
+          color: "Brown",
+          material: "100% Cotton",
+          pictures: [
+            "Brown_Jacket-Front.JPG",
+          ],
+        }}
+        confirmedList={confirmedList}
+        toggleSelection={toggleSelection}
+      />
+      <Product
+        info={{
+          id: "8",
+          name: "Jacket",
+          brand: "N/A",
+          size: "N/A",
+          color: "Grey",
+          material: "N/A",
+          pictures: [
+            "DenimJacket-Front.JPG",
+          ],
+        }}
+        confirmedList={confirmedList}
+        toggleSelection={toggleSelection}
+      />
+      <Product
+        info={{
+          id: "9",
+          name: "Jacket",
+          brand: "Mondo Di Marco",
+          size: "L",
+          color: "Black",
+          material: "N/A",
+          pictures: [
+            "MondoJacket-Front.JPG",
+            "MondoJacket-Back.JPG",
+          ],
+        }}
+        confirmedList={confirmedList}
+        toggleSelection={toggleSelection}
+      />
+      
     </div>
   );
 };
