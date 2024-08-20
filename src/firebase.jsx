@@ -5,6 +5,9 @@ import { getFirestore } from "firebase/firestore";
 
 // TODO: Replace the following with your app's Firebase project configuration
 // See: https://support.google.com/firebase/answer/7015592
+
+import { getStorage } from "firebase/storage";
+
 const firebaseConfig = {
   apiKey: "AIzaSyBMhVx-S7HqCtTQgBqgdirQjZxHxUk8Sk4",
   authDomain: "designer-clothes-78975.firebaseapp.com",
@@ -15,9 +18,8 @@ const firebaseConfig = {
   measurementId: "G-CMQKDK4FER"
 };
 
-// Initialize Firebase
-firebase.initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+const storage = getStorage(app);
 
-
-// Initialize Cloud Firestore and get a reference to the service
-// const db = firebase.firestore();
+export { db , storage};

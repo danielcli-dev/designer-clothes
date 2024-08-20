@@ -7,8 +7,6 @@ const Header = () => {
       <div className="header__logo">
         <h2>Designer Clothes</h2>
       </div>
-
-     
     </div>
   );
 };
