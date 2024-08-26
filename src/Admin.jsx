@@ -171,6 +171,7 @@ const Admin = () => {
             <option value="L">L</option>
             <option value="XL">XL</option>
             <option value="XXL">XXL</option>
+            <option value="N/A">N/A</option>
           </select>
         </div>
         <div>

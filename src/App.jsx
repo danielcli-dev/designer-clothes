@@ -12,6 +12,7 @@ import {
   Route,
   redirect,
 } from "react-router-dom";
+import React from "react";
 
 function App() {
 
@@ -23,7 +24,6 @@ function App() {
             path="/admin"
             element={
               <>
-                {" "}
                 <Header />
                 <Admin />
               </>
