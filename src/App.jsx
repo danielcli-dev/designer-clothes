@@ -6,16 +6,42 @@ import Header from "./Header";
 import Filter from "./Filter";
 import Home from "./Home";
 import Admin from "./Admin";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  redirect,
+} from "react-router-dom";
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [user, setUser] = useState(null);
 
   return (
     <div className="app">
-      <Header />
-      <Filter />
-      <Admin/>
-      <Home />
+      <Router>
+        <Routes>
+          <Route
+            path="/admin"
+            element={
+              <>
+                {" "}
+                <Header />
+                <Admin />
+              </>
+            }
+          ></Route>
+          <Route
+            path="/"
+            element={
+              <>
+                <Header />
+                <Filter />
+                <Home />
+              </>
+            }
+          ></Route>
+        </Routes>
+      </Router>
     </div>
   );
 }

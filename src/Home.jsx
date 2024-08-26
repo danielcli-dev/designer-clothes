@@ -1,10 +1,19 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import SimpleSlider from "./SimpleSlider";
 import Product from "./Product";
 import "./Home.css";
-
+import { db } from "./firebase";
+import {
+  collection,
+  addDoc,
+  onSnapshot,
+  query,
+  orderBy,
+  Timestamp,
+} from "firebase/firestore";
 const Home = () => {
   const [confirmedList, setConfirmedList] = useState([]);
+  const [productList, setProductList] = useState([]);
 
   const toggleSelection = (id) => {
     if (confirmedList.includes(id)) {
@@ -12,144 +21,52 @@ const Home = () => {
       console.log(confirmedList);
     } else {
       setConfirmedList((confirmedList) => [...confirmedList, id]);
-      console.log(confirmedList);
+      // console.log(confirmedList);
+      console.log(productList);
     }
   };
 
+  useEffect(() => {
+    onSnapshot(
+      query(collection(db, "products"), orderBy("name", "desc")),
+      (docs) => {
+        let newProducts = [];
+
+        docs.forEach((doc) => {
+          let currentDoc = doc.data();
+          currentDoc["id"] = doc.id
+         
+          console.log(currentDoc)
+          newProducts.push(currentDoc);
+        });
+        setProductList(newProducts);
+
+        // setProductList((productList) => [...productList, doc.data()]);
+      }
+    );
+  }, []);
+
   return (
     <div className="home">
-      <Product
-        info={{
-          id: "1",
-          name: "Jacket",
-          brand: "Axis",
-          size: "M",
-          color: "Beige",
-          material: "75% Cotton, 23% Rayon, 2% Lycra",
-          pictures: ["Axis_BeigeJacket-Front.JPG", "Axis_BeigeJacket-Back.JPG"],
-          isChecked: true,
-        }}
-        confirmedList={confirmedList}
-        toggleSelection={toggleSelection}
-      />
-      <Product
-        info={{
-          id: "2",
-          name: "Jacket",
-          brand: "Axis",
-          size: "L",
-          color: "Beige",
-          material: "N/A",
-          pictures: ["Axis_SuadeJacket-Front.JPG", "Axis_SuadeJacket-Back.JPG"],
-          isChecked: false,
-        }}
-        confirmedList={confirmedList}
-        toggleSelection={toggleSelection}
-      />
-      <Product
-        info={{
-          id: "3",
-          name: "Jacket",
-          brand: "Axis Denim",
-          size: "XL",
-          color: "Beige",
-          material: "55% Tencel Lyocell, 45% Cotton",
-          pictures: ["AxisDenim_Jacket-Front.JPG", "AxisDenim_Jacket-Back.JPG"],
-          isChecked: true,
-        }}
-        confirmedList={confirmedList}
-        toggleSelection={toggleSelection}
-      />
-      <Product
-        info={{
-          id: "4",
-          name: "Jacket",
-          brand: "Axis Modern Coast",
-          size: "M",
-          color: "Beige",
-          material: "100% Cotton",
-          pictures: [
-            "AxisModernCoast_CottonJacket-Front.JPG",
-            "AxisModernCoast_CottonJacket-Back.JPG",
-          ],
-          isChecked: false,
-        }}
-        confirmedList={confirmedList}
-        toggleSelection={toggleSelection}
-      />
-      <Product
-        info={{
-          id: "5",
-          name: "Jacket",
-          brand: "Axis Modern Coast",
-          size: "M",
-          color: "Black",
-          material: "70% Wool, 30% Acrylic",
-          pictures: [
-            "AxisModernCoast_Jacket-Front.JPG",
-            "AxisModernCoast_Jacket-Back.JPG",
-          ],
-          isChecked: false,
-        }}
-        confirmedList={confirmedList}
-        toggleSelection={toggleSelection}
-      />
-      <Product
-        info={{
-          id: "6",
-          name: "Jacket",
-          brand: "Bluemist",
-          size: "M",
-          color: "Black",
-          material: "89% Polyester, 11% Nylon",
-          pictures: ["Bluemist_Jacket-Front.JPG", "Bluemist_Jacket-Back.JPG"],
-          isChecked: false,
-        }}
-        confirmedList={confirmedList}
-        toggleSelection={toggleSelection}
-      />
-      <Product
-        info={{
-          id: "7",
-          name: "Jacket",
-          brand: "Bluemist",
-          size: "M",
-          color: "Brown",
-          material: "100% Cotton",
-          pictures: ["Brown_Jacket-Front.JPG"],
-          isChecked: false,
-        }}
-        confirmedList={confirmedList}
-        toggleSelection={toggleSelection}
-      />
-      <Product
-        info={{
-          id: "8",
-          name: "Jacket",
-          brand: "N/A",
-          size: "N/A",
-          color: "Grey",
-          material: "N/A",
-          pictures: ["DenimJacket-Front.JPG"],
-          isChecked: false,
-        }}
-        confirmedList={confirmedList}
-        toggleSelection={toggleSelection}
-      />
-      <Product
-        info={{
-          id: "9",
-          name: "Jacket",
-          brand: "Mondo Di Marco",
-          size: "L",
-          color: "Black",
-          material: "N/A",
-          pictures: ["Mondo_Jacket-Front.JPG", "Mondo_Jacket-Back.JPG"],
-          isChecked: false,
-        }}
-        confirmedList={confirmedList}
-        toggleSelection={toggleSelection}
-      />
+
+      {productList.map((product, index) => (
+        <Product
+          key={index}
+          info={{
+            id: product.id,
+            name: product.name,
+            brand: product.brand,
+            size: product.size,
+            color: product.color,
+            material: product.material,
+            pictures: product.pictures,
+            isChecked: product.isChecked,
+          }}
+          confirmedList={confirmedList}
+          toggleSelection={toggleSelection}
+        />
+      ))}
+
     </div>
   );
 };

@@ -8,15 +8,10 @@ export default function SimpleSlider(props) {
   var settings = {
     arrows: true,
     dots: true,
-    infinite: true,
+    infinite: false,
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
   };
-  return (
-    <Slider {...settings}>
-      {props.children}
-      
-    </Slider>
-  );
+  return <Slider {...settings}>{props.children}</Slider>;
 }

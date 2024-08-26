@@ -1,3 +1,20 @@
+:root {
+  /* Used for overall width of slider */
+  /* Slider width should equal 2 *ball diameter + 2 * ball location */
+  --slider-width: calc(
+    (2 * var(--slider-ball-diameter)) + (2 * var(--slider-ball-location))
+  );
+  /* Used for slider height and border-radius.*/
+  /* Slider height should equal ball diameter + 2 * ball location*/
+  --slider-height: calc(
+    (var(--slider-ball-diameter)) + (2 * var(--slider-ball-location))
+  );
+  /* Used for slider ball width, height, and translation of ball */
+  --slider-ball-diameter: 16px;
+  /* Used to move slider ball into place */
+  --slider-ball-location: 4px;
+}
+
 .product {
   display: flex;
   flex-direction: row;
@@ -6,6 +23,10 @@
   padding: 40px 20px;
   object-fit: contain;
   /* background-color: pink; */
+  border-bottom: solid 1px black;
+}
+.product:not(:last-child) {
+  border-bottom: solid 1px black;
 }
 
 .product__image {
@@ -23,46 +44,40 @@
   white-space: none; /* margin: 25px; */
   width: 50%;
 }
+
 .product__buttons {
-  display: flex;
-  margin: 15px;
-}
-.product__button {
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  border: solid 1px black;
-  padding: 5px;
-  margin: 15px;
-  background-color: rgb(254, 76, 76);
-}
-.product__button:hover {
-  cursor: pointer;
 }
 
-.product__button.selected {
-  background-color: rgb(97, 247, 97);
+.product__buttons-text {
+  font-size: 18px;
+  font-weight: 500;
 }
 
-@media only screen and (max-width: 600px) {
+@media all and (max-width: 600px) {
   .product {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    width: 80%;
   }
 
   .product__image {
-    /* margin: 25px; */
     width: 90%;
     padding: 0 30px;
   }
   .product__description {
-    
     margin-top: 30px;
-    
+  }
+
+  .product__name {
+    font-size: 3vh;
+  }
+
+  .product__info {
+    font-size: 2vh;
   }
 }
 
@@ -70,8 +85,9 @@
 .switch {
   position: relative;
   display: inline-block;
-  width: 60px;
-  height: 34px;
+  width: var(--slider-width);
+  height: var(--slider-height);
+  margin: 10px;
 }
 
 /* Hide default HTML checkbox */
@@ -97,10 +113,10 @@
 .slider:before {
   position: absolute;
   content: "";
-  height: 26px;
-  width: 26px;
-  left: 4px;
-  bottom: 4px;
+  height: var(--slider-ball-diameter);
+  width: var(--slider-ball-diameter);
+  left: var(--slider-ball-location);
+  bottom: var(--slider-ball-location);
   background-color: white;
   -webkit-transition: 0.4s;
   transition: 0.4s;
@@ -115,14 +131,14 @@ input:focus + .slider {
 }
 
 input:checked + .slider:before {
-  -webkit-transform: translateX(26px);
-  -ms-transform: translateX(26px);
-  transform: translateX(26px);
+  -webkit-transform: translateX(var(--slider-ball-diameter));
+  -ms-transform: translateX(var(--slider-ball-diameter));
+  transform: translateX(var(--slider-ball-diameter));
 }
 
 /* Rounded sliders */
 .slider.round {
-  border-radius: 34px;
+  border-radius: var(--slider-height);
 }
 
 .slider.round:before {
