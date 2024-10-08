@@ -66,7 +66,6 @@ const Product = ({ info, confirmedList, toggleSelection }) => {
       <div className="product__description">
         <h2 className="product__name">{info.name}</h2>
         <span className="product__info">Brand: {info.brand}</span>
-        <span className="product__info">Color: {info.color}</span>
         <span className="product__info">Size: {info.size}</span>
         <span className="product__info">Material: {info.material}</span>
         <span className="product__info">Color: {info.color}</span>

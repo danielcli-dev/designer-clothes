@@ -7,6 +7,10 @@ import {
   query,
   orderBy,
   Timestamp,
+  where,
+  getDocs,
+  doc,
+  deleteDoc,
 } from "firebase/firestore";
 import { db, storage } from "./firebase";
 import { v4 as uuidv4 } from "uuid";
@@ -30,8 +34,24 @@ const Admin = () => {
   const [user, setUser] = useState(null);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [productList, setProductList] = useState([]);
 
-  useEffect(() => {});
+  useEffect(() => {
+    onSnapshot(
+      query(collection(db, "products"), orderBy("name", "desc")),
+      (docs) => {
+        let newProducts = [];
+
+        docs.forEach((doc) => {
+          let currentDoc = doc.data();
+          currentDoc["id"] = doc.id;
+          newProducts.push(currentDoc);
+        });
+        setProductList(newProducts);
+      }
+    );
+  }, []);
+
   const signIn = () => {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
@@ -67,10 +87,9 @@ const Admin = () => {
 
         uploadBytes(newUploadRef, imageURI[i])
           .then(async (snapshot) => {
-            const imageURL = await getDownloadURL(snapshot.ref);
+            let imageURL = await getDownloadURL(snapshot.ref);
 
             return imageURL;
-            //   db.collection("users").doc(doc.id).update({ foo: "bar" });
           })
           .then((imageURL) => {
             imageList.push(imageURL);
@@ -99,6 +118,32 @@ const Admin = () => {
     } else {
       window.alert("Form missing data. Failed to add product");
     }
+  };
+
+  const deleteProduct = async (id) => {
+    await deleteDoc(doc(db, "products", id));
+    // let productsRef = collection(db, "products");
+
+    // let q = query(productsRef, where("id", "==", id));
+
+    // console.log(q);
+    // let querySnapshot = await getDocs(q);
+    // querySnapshot.forEach((doc) => {
+    //   // doc.data() is never undefined for query doc snapshots
+    //   console.log(doc.id, " => ", doc.data());
+    // });
+    // console.log(querySnapshot);
+
+    // deleteDoc(collection(db, "products"), {
+    //   id: uuidv4(),
+    //   name: name != "" ? name : "N/A",
+    //   brand: brand != "" ? brand : "N/A",
+    //   size: size != "" ? size : "N/A",
+    //   color: color != "" ? color : "N/A",
+    //   material: material != "" ? material : "N/A",
+    //   pictures: imageList,
+    //   isChecked: false,
+    // });
   };
 
   return !user ? (
@@ -236,6 +281,37 @@ const Admin = () => {
             Add Product
           </button>
         </div>
+      </div>
+      <div className="productDetails">
+        {productList.map((product, index) => (
+          <div className="detail">
+            <div className="detail__images">
+              <img className="detail__image" src={product.pictures[0]} alt="" />
+              <img className="detail__image" src={product.pictures[1]} alt="" />
+            </div>
+
+            <div className="detail__info">
+              <p>ProductID: {product.id}</p>
+              <p>Name: {product.name}</p>
+              <p>Brand: {product.brand}</p>
+              <p>Size: {product.size}</p>
+              <p>Color: {product.color}</p>
+              <p>Material: {product.material}</p>
+              <p>isChecked? {product.isChecked ? "True" : "False"}</p>
+            </div>
+            <div className="detail__buttons">
+              <button
+                className="detail__button"
+                onClick={() => {
+                  console.log(product.id);
+                  deleteProduct(product.id);
+                }}
+              >
+                Delete
+              </button>
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   );

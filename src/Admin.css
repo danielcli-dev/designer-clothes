@@ -63,3 +63,51 @@
 .product__button.selected {
   background-color: rgb(97, 247, 97);
 }
+
+.product__form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  flex: 1;
+}
+
+.productDetails {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  height: 100%;
+  overflow: scroll;
+}
+.detail {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-bottom: solid 1px black;
+}
+
+.detail__images {
+  flex: 1;
+}
+.detail__image {
+  width: 200px;
+  height: auto;
+}
+
+.detail__info {
+  flex: 1;
+}
+
+.detail__buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 0.5;
+}
+
+.detail__button {
+  width: fit-content;
+  height: fit-content;
+  padding: 3px;
+  border-radius: 3px;
+}
