@@ -36,8 +36,6 @@ const Admin = () => {
   const [password, setPassword] = useState("");
   const [productList, setProductList] = useState([]);
 
-
-
   useEffect(() => {
     onSnapshot(
       query(collection(db, "products"), orderBy("name", "desc")),
@@ -59,8 +57,8 @@ const Admin = () => {
       .then((userCredential) => {
         // Signed up
         const user = userCredential.user;
-        setUser(user);
-        localStorage.setItem("user", user);
+        setUser(user.uid);
+        localStorage.setItem("user", user.uid);
         window.alert("Signed in successfully");
         console.log(user);
         // ...
@@ -149,7 +147,7 @@ const Admin = () => {
     // });
   };
 
-  return !localStorage.getItem("user") == user ? (
+  return localStorage.getItem("user") != "Jk5Oa7Y1NYWzazUZVgBTGxQQjnu1" ? (
     <div className="admin">
       <form className="login__form">
         <label htmlFor="email">Email:</label>
