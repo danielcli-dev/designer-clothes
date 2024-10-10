@@ -55,6 +55,10 @@
   font-size: 18px;
   font-weight: 500;
 }
+.product__infoContainer {
+  display: flex;
+  flex-direction: column;
+}
 
 @media all and (max-width: 600px) {
   .product {
