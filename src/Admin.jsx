@@ -60,7 +60,8 @@ const Admin = () => {
         setUser(user.uid);
         localStorage.setItem("user", user.uid);
         window.alert("Signed in successfully");
-        console.log(user);
+        window.location.reload();
+
         // ...
       })
       .catch((error) => {

@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Header.css";
+import { linkWithCredential } from "firebase/auth";
 
 const Header = () => {
   return (
@@ -15,11 +16,12 @@ const Header = () => {
         </h2>
       </div>{" "}
       <div className="header__right">
-        {localStorage.getItem("user") != "Jk5Oa7Y1NYWzazUZVgBTGxQQjnu1" ? (
+        {localStorage.getItem("user") == "Jk5Oa7Y1NYWzazUZVgBTGxQQjnu1" ? (
           <p
             className="admin__icon"
             onClick={() => {
               localStorage.removeItem("user");
+              window.location.reload();
             }}
           >
             Logout
