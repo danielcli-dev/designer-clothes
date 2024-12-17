@@ -16,26 +16,23 @@ const Header = () => {
         </h2>
       </div>{" "}
       <div className="header__right">
-        {localStorage.getItem("user") == "Jk5Oa7Y1NYWzazUZVgBTGxQQjnu1" ? (
-          <p
-            className="admin__icon"
-            onClick={() => {
-              localStorage.removeItem("user");
-              window.location.reload();
-            }}
-          >
-            Logout
-          </p>
-        ) : (
-          <p
-            className="admin__icon"
-            onClick={() => {
-              window.location.href = "/admin";
-            }}
-          >
-            Admin
-          </p>
-        )}
+        <p
+          className="admin__icon"
+          onClick={() => {
+            window.location.href = "/admin";
+          }}
+        >
+          Admin
+        </p>{" "}
+        <p
+          className="admin__icon"
+          onClick={() => {
+            localStorage.removeItem("user");
+            window.location.reload();
+          }}
+        >
+          Logout
+        </p>
       </div>
     </div>
   );
